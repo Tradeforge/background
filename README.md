@@ -1,4 +1,4 @@
-# `go.strv.io/background`
+# `go.tradeforge.dev/background`
 
 [![Tests][badge-tests]][workflow-tests] [![codecov][badge-codecov]][codecov-dashboard]
 
@@ -15,7 +15,7 @@ A typical example in production code might be a background task that periodicall
 ## Installation
 
 ```sh
-go get go.strv.io/background
+go get go.tradeforge.dev/background
 ```
 
 ## Usage
@@ -27,7 +27,7 @@ import (
 	"context"
 	"fmt"
 
-	"go.strv.io/background/manager"
+	"go.tradeforge.dev/background/manager"
 
 func main() {
 	ctx := context.Background()

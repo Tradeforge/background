@@ -1,4 +1,4 @@
-module go.tradeforge.app/background
+module go.tradeforge.dev/background
 
 go 1.22.0
 
