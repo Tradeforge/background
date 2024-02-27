@@ -1,0 +1,27 @@
+---
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - run: go version
+      - run: make test
+      - name: Upload coverage reports to Codecov
+        if: success()
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
