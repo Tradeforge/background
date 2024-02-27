@@ -1,0 +1,38 @@
+# Local configuration
+.bashrc
+.zshrc
+
+# MacOS
+.DS_Store
+
+.cache
+coverage.txt
+
+# Test binary, built with `go test -c`
+*.test
+# Local files, backups, logs and temporary files
+**/*.local
+**/*.local.*
+**/*.bkp
+**/*.log
+**/*.tmp
+
+# Environment
+.env
+.env.test
+.secret
+
+# Go modules
+go.work
+go.work.sum
+
+# IDE
+.idea/
+.vscode/
+
+# Debug
+__debug*
+*.log
+
+# Playground
+playground.go
