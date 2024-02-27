@@ -69,7 +69,7 @@ func main() {
 
 See the [LICENSE](LICENSE) file for details.
 
-[badge-tests]: https://github.com/tradeforge/go-background/manager/actions/workflows/test.yaml/badge.svg
-[workflow-tests]: https://github.com/tradeforge/go-background/manager/actions/workflows/test.yaml
-[badge-codecov]: https://codecov.io/gh/tradeforge/go-background/manager/graph/badge.svg?token=ST3JD5GCRN
-[codecov-dashboard]: https://codecov.io/gh/tradeforge/go-background/manager
+[badge-tests]: https://github.com/tradeforge/go-background-manager/actions/workflows/test.yaml/badge.svg
+[workflow-tests]: https://github.com/tradeforge/go-background-manager/actions/workflows/test.yaml
+[badge-codecov]: https://codecov.io/gh/Tradeforge/go-background-manager/graph/badge.svg?token=TNCCWBG5YD
+[codecov-dashboard]: https://codecov.io/gh/Tradeforge/go-background-manager
