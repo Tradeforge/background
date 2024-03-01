@@ -2,6 +2,7 @@ package manager
 
 import (
 	"context"
+	"sync"
 
 	"github.com/eapache/go-resiliency/retrier"
 	"github.com/sourcegraph/conc/pool"
@@ -9,8 +10,9 @@ import (
 
 // Manager keeps track of scheduled goroutines and provides mechanisms to wait for them to finish.
 type Manager struct {
-	pool *pool.ContextPool
-	stat ManagerStats
+	pool     *pool.ContextPool
+	stat     ManagerStats
+	statLock sync.RWMutex
 
 	// retrier is a retrier instance that will be used to run tasks if retry is enabled.
 	retrier *retrier.Retrier
@@ -88,6 +90,8 @@ func (m *Manager) Wait() error {
 
 // Stat returns manager statistics.
 func (m *Manager) Stat() ManagerStats {
+	m.statLock.RLock()
+	defer m.statLock.RUnlock()
 	return m.stat
 }
 
@@ -102,9 +106,13 @@ func (m *Manager) withRetry(task TaskFunc, retry *retrier.Retrier) TaskFunc {
 
 func (m *Manager) withStats(task TaskFunc) TaskFunc {
 	return func(ctx context.Context) error {
+		m.statLock.Lock()
 		m.stat.RunningTasks++
+		m.statLock.Unlock()
 		defer func() {
+			m.statLock.Lock()
 			m.stat.RunningTasks--
+			m.statLock.Unlock()
 		}()
 		return task(ctx)
 	}
