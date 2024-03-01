@@ -41,7 +41,7 @@ func New(ctx context.Context, opts ...Option) *Manager {
 		cancelFunc: cancelFunc,
 	}
 	for _, opt := range opts {
-		opt.Apply(m)
+		opt(m)
 	}
 	return m
 }
