@@ -49,11 +49,12 @@ func New(ctx context.Context, opts ...Option) *Manager {
 // TaskFunc is the function to be executed in a goroutine.
 type TaskFunc func(ctx context.Context) error
 
-// Start starts the manager and runs all the registered tasks.
-func (m *Manager) Start() {
+// Start starts the manager and runs all the registered tasks and waits for their completion.
+func (m *Manager) Start() error {
 	for _, task := range m.queuedTasks {
 		m.Run(task)
 	}
+	return m.Wait()
 }
 
 // Register registers a task to be run by the manager.
