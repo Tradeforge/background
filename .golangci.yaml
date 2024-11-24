@@ -24,12 +24,12 @@ linters:
     - goconst
     - gocritic
     - gofmt
-    - gomnd
     - gosec
     - misspell
+    - mnd
     - nilerr
-    - revive
     - prealloc
+    - revive
     - stylecheck
     - tenv
     - thelper
