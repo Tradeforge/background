@@ -77,15 +77,13 @@ func (m *Manager) RunWithRetry(task TaskFunc, retry *retrier.Retrier) {
 }
 
 // Stop cancels the context of the manager and all its tasks.
-func (m *Manager) Stop() error {
+func (m *Manager) Stop() {
 	m.cancelFunc()
-	return m.pool.Wait()
 }
 
 // Wait blocks until all scheduled tasks have finished and propagate any panics spawned by a child to the caller.
 // Wait returns an error if any of the tasks failed.
 func (m *Manager) Wait() error {
-	defer m.cancelFunc()
 	return m.pool.Wait()
 }
 

@@ -3,7 +3,7 @@ module go.tradeforge.dev/background
 go 1.22.0
 
 require (
-	github.com/eapache/go-resiliency v1.6.0
+	github.com/eapache/go-resiliency v1.7.0
 	github.com/sourcegraph/conc v0.3.0
 	github.com/stretchr/testify v1.9.0
 )
