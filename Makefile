@@ -1,12 +1,25 @@
-all: lint test
+include ./Makefile.vars
 
-lint: force
-	./tools/golangci-lint run -v
+GO := $(shell which go)
 
-test: force
-	go test -v -timeout 30s -covermode=atomic -coverprofile=coverage.txt ./...
+.PHONY:
+	run  \
+	test \
+	build
 
-clean:
-	rm -rf .cache
+all: fmt vet build
 
-.PHONY: force
+fmt:
+	$(GO) fmt ./...
+
+vet:
+	$(GO) vet ./...
+
+run: fmt vet
+	$(GO) run ./cmd
+
+test: lint
+	$(GO) test ./... -cover
+
+lint:
+	golangci-lint run

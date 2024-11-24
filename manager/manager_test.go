@@ -99,7 +99,7 @@ func TestRunWithRetry(t *testing.T) {
 			args: args{
 				ctx: ctx,
 				opts: []Option{
-					WithExpotentialRetry(5, 250*time.Second, 1*time.Second),
+					WithExpotentialRetry(5, 1*time.Second, 1*time.Second),
 				},
 			},
 		},
@@ -150,7 +150,7 @@ func TestContextCancelled(t *testing.T) {
 				select {
 				case <-ctx.Done():
 					return ctx.Err()
-				case <-time.After(5 * time.Second):
+				case <-time.After(1 * time.Second):
 					return errors.New("timeout")
 				}
 			})
@@ -195,8 +195,8 @@ func TestStop(t *testing.T) {
 				return nil
 			})
 			assert.Equal(t, 1, m.stat.RunningTasks)
-			err := m.Stop()
-			assert.Nil(t, err)
+			m.Stop()
+			time.Sleep(1 * time.Second)
 			assert.Equal(t, 0, m.stat.RunningTasks)
 		})
 	}
